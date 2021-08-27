@@ -6,6 +6,8 @@ var logger = require('morgan');
 var cors = require('cors')
 
 
+// importing modules (router)
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/signup');
 var findRouter = require('./routes/signin');
@@ -13,9 +15,10 @@ var feedRouter = require('./routes/Feed');
 var FeedsRouter = require('./routes/Feeds');
 var LikeRouter = require('./routes/like');
 var Comments = require("./routes/Comments")
-
 var UploadImg = require('./routes/uploadImg');
 var UpdateUser = require('./routes/updateUser');
+
+
 
 var app = express();
 app.use(cors())
@@ -29,6 +32,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+// using routers in app
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
