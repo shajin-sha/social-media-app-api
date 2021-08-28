@@ -1,42 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var multer = require("multer")
 var MongoClient = require("mongodb").MongoClient
 
-
-let date = new Date()
-
-const dateNow = date.getTime()
+const dateNow = new Date()
 
 
-const storage = multer.diskStorage({
-    destination: function (request, file, callback) {
-        // node.js express public dir 
-        // storing static file at this dir 
-        // and access this from react-app
-        callback(null,"./public/images/uploads")
-        
-
-    },
-
-
-    filename: function (request, file, callback,) {
-        callback(null, dateNow+file.originalname);
-    }
-})
-
-
-const upload = multer({
-    storage: storage,
-    limits: {
-        fieldSize: 1024 * 1024 * 3
-    }
-})
-
-
-
-router.post('/', upload.single("Img"), function (req, res, next) {
-
+router.post('/', function (req, res, next) {
     const uri = 'mongodb+srv://shajin:shajin1530.@cluster1.umyhu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
     MongoClient.connect(uri, (err, client) => {
 
@@ -46,17 +15,17 @@ router.post('/', upload.single("Img"), function (req, res, next) {
         else{
             let data = {
                 caption:req.body.caption,
-                ImgName:dateNow+req.body.ImgName,
+                ImgName:req.body.Img,
                 feedby:req.body.feedby,
                 likes:0,
                 comments:0,
                 likedUsers:[],
-                key:dateNow,
+                key:dateNow.getTime(),
                 dateSt:req.body.dateSt,
                 feedUserDp:req.body.dp,
                 type:req.body.type
-
-            }    
+            }
+            console.log(data)    
             client.db("feed_app").collection("Feed").insertOne(data).then(()=>{
                 res.json("feed added")
             }).catch((err)=>{
