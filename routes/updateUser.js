@@ -16,9 +16,9 @@ router.post("/", (req, res, next) => {
             let data = {
                 Name: req.body.Name,
                 userName: req.body.userName,
-                Bio: req.body.Bio,
+                Bio:req.body.Bio,
                 Dp:req.body.DpUrl,
-                profileUpdated: req.body.profileUpdated,
+                profileUpdated:req.body.profileUpdated,
             }
             client.db("feed_app").collection("users").updateOne({ userName: data.userName }, { $set: { ...data } }, (err) => {
                 if (err) {
@@ -28,7 +28,7 @@ router.post("/", (req, res, next) => {
                         })
                 }
                 else {
-                    res.json({ dp: req.body.DPUrl})
+                    res.json({dp:req.body.DpUrl})
                 }
             })
         }
