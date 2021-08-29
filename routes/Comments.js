@@ -17,7 +17,6 @@ router.post('/', function (req, res, next) {
                 let CurrentCommentedUsers = data.commentedUsers
                 CurrentCommentedUsers.push({comment:req.body.comment,commentedBy:req.body.commentedBy,commentedUserDP:req.body.commentedUserDP})
                 client.db("feed_app").collection("Feed").updateOne({key:req.body.key},{$set:{commentedUsers:CurrentCommentedUsers}})
-                client.close()
 
         })
 
