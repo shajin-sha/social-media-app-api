@@ -32,6 +32,7 @@ router.post("/", (req, res, next) => {
                 }
             })
         }
+        client.close()
     })
 })
 

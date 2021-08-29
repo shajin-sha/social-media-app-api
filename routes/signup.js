@@ -39,10 +39,10 @@ router.post('/', function (req, res, next) {
     else {
       console.log("err")
     }
-
+    client.close()
   })
 
-
+  
 });
 
 

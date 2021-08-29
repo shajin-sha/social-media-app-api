@@ -19,7 +19,8 @@ router.get("/",(req,res,next)=>{
 
     
         }
-    
+
+    client.close()
       })
 
 

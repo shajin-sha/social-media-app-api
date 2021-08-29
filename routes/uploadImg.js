@@ -21,7 +21,7 @@ router.post('/', function (req, res, next) {
                 comments:0,
                 likedUsers:[],
                 key:dateNow.getTime(),
-                dateSt:req.body.dateSt,
+                dateSt:req.body.dateST,
                 feedUserDp:req.body.dp,
                 type:req.body.type
             }
@@ -33,7 +33,7 @@ router.post('/', function (req, res, next) {
 
             })
         }
-    
+        client.close()
       })
 
 });
