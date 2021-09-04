@@ -28,7 +28,7 @@ router.post("/", (req, res, next) => {
                         })
                 }
                 else {
-                    res.json({dp:req.body.DpUrl})
+                    res.json({dp:req.body.DpUrl,Bio:data.Bio})
                 }
             })
         }

@@ -10,10 +10,9 @@ router.post('/', function (req, res, next) {
   MongoClient.connect(uri, (err, client) => {
 
 
-    // chekiang that the res username is not in the database
+    // chekiang that the req username is not in the database
     if (!err) {
       client.db("feed_app").collection("users").findOne({ "userName": req.body[0].userName}, (err, result) => {
-        console.log(result)
 
         if (result === null) {
 

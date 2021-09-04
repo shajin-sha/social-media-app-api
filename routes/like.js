@@ -15,7 +15,7 @@ router.post('/', function (req, res, next) {
             client.db("feed_app").collection("Feed").findOne({key:req.body.key},(err,data)=>{
                 var likes = data.likes
                 if(req.body.like===+1){
-
+                    // upadate like 
                    client.db("feed_app").collection("Feed").findOne({key:req.body.key},(err,res)=>{
                     let likedUsers = res.likedUsers
                     likedUsers.push({userName:req.body.user,likes:res.likes+1,key:req.body.key})
